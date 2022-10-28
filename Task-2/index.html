@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do list</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    >
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
+    <section class="outer">
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-sm-12 col-md-8">
+                  <center>
+                    <h1 class="bg-warning">To do List</h1>
+                  </center>
+                        <form id="form">
+                          <div class="inner">
+                            <div class="form-row">
+                              <div class="col-8 mr-sm-2">
+                                <input type="text" class="form-control" placeholder="Enter your task" id="addtaskinput" maxlength="15"/>
+                                <label for=".taskDate">Due Date:</label> 
+                                <input type="date" class="taskDate form-control" id="add-date-input"> 
+                                <label for=".taskTime">Due Time:</label> 
+                                <input type="time" class="taskTime form-control" id="add-time-input"> 
+                                <br>
+                                <div class="input-group mb-3">
+                                    <select class="form-select" id="inputGroupSelect01">
+                                      <option selected>To do</option>
+                                      <option>Doing</option>
+                                      <option>Done</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-success" type="submit" id="add-task-btn">Add Task</button>
+                                <button class="btn btn-danger" type="submit"id="delete-all">Delete All</button>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                    <br>
+                        <div>
+                            <table class="table">
+                                <thead class="table-info">
+                                  <tr>
+                                    <th scope="col">Tasks</th>
+                                    <th scope="col">Date & Time</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Edit</th>
+                                    <th scope="col">Delete</th>
+                                  </tr>
+                                </thead>
+                                <tbody id="task_list">
+                                  
+                                </tbody>
+                              </table>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script src="script.js"></script>
+</html>

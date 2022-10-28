@@ -1,0 +1,60 @@
+<!--To-do list-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todolist</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    >
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>To-do List</h1>
+            <form class="input-group mb-3" id="form">
+                <input id="input" type="text" class="form-control" placeholder="Add a new task">
+                <button id="add_btn" class="btn btn-outline-success" type="submit">Add Task</button>
+            </form>
+              <h4 id="msg" class="text-danger"></h4>
+        </header>
+        <main>
+            <h2>Tasks</h2>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="completed" onclick="completedTasks()">
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Completed
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="incomplete" onclick="incompleteTasks()">
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Incomplete
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="all" onclick="allTasks()" checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                  All
+                </label>
+            </div>
+            <ul id="task_list" class="list-group">
+                <li class="list-group-item d-flex justify-content-between">
+                    <h5 class="flex-grow-1"></h5>
+                    <button class="btn btn-warning mx-3" onclick="editTask(this)">Edit</button>
+                    <button class="btn btn-danger" onclick="removeTask(this)">Delete</button>
+                    <span id="edit"></span>
+                    <span id="date"></span>
+                </li>
+              </ul>
+        </main>
+    </div>
+</body>
+<script src="script.js"></script>
+</html>
