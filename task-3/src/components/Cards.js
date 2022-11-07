@@ -1,5 +1,7 @@
 import * as React from 'react';
 import {Card} from 'react-bootstrap';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import ListGroup from 'react-bootstrap/ListGroup';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
@@ -10,9 +12,11 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
         return (
             <div>
              {MyData.map((card) => {
-              console.log("Hello");
              return (
-                 <Card style={{ width: '20rem'}} >
+              <Row xs={1} md={3} className="g-4">
+              {Array.from({ length: 3 }).map((_, idx) => (
+                <Col>
+                 <Card stle={{width: '20rem'}}> 
                   <Card.Img variant="top" src={card.urlToImage} /> 
                   <Card.Body>
                     <Card.Title>{card.title}</Card.Title>
@@ -27,12 +31,14 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
                   <Card.Body>
                     <Card.Link href="#">Learn More</Card.Link>
                   </Card.Body>
-                </Card>  
-             )
-               })}   
+                </Card>
+              </Col> 
+             ))}
+             </Row>
+          )})}
      </div>
              );
-             }
+              }
 
   
   export default Cards;
