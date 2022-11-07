@@ -14,6 +14,7 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <section class="outer">
@@ -28,20 +29,20 @@
                             <div class="form-row">
                               <div class="col-8 mr-sm-2">
                                 <input type="text" class="form-control" placeholder="Enter your task" id="addtaskinput" maxlength="15"/>
-                                <label for=".taskDate">Due Date:</label> 
+                                <!-- <label for=".taskDate">Due Date:</label> 
                                 <input type="date" class="taskDate form-control" id="add-date-input"> 
                                 <label for=".taskTime">Due Time:</label> 
-                                <input type="time" class="taskTime form-control" id="add-time-input"> 
+                                <input type="time" class="taskTime form-control" id="add-time-input">  -->
                                 <br>
                                 <div class="input-group mb-3">
-                                    <select class="form-select" id="inputGroupSelect01">
+                                    <select class="form-select rounded-pill border-primary" id="inputGroupSelect01">
                                       <option selected>To do</option>
                                       <option>Doing</option>
                                       <option>Done</option>
                                     </select>
                                 </div>
                                 <button class="btn btn-success" type="submit" id="add-task-btn">Add Task</button>
-                                <button class="btn btn-danger" type="submit"id="delete-all">Delete All</button>
+                                <!-- <button class="btn btn-danger" type="submit"id="delete-all">Delete All</button> -->
                               </div>
                             </div>
                           </div>

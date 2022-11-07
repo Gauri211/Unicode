@@ -8,17 +8,28 @@ let tasklist = document.getElementById("task_list");
 let todos = '';
 
 
-const loadData = async () => {
-    try{
-        const res = await fetch(url);
-        console.log(res.ok);
-        const data = await res.json(); 
-        return data;
-    } catch(err) {
-        console.log(err);
-    }};
+// const loadData = async () => {
+//     try{
+//         const res = await fetch(url);
+//         console.log(res.ok);
+//         const data = await res.json(); 
+//         return data;
+//     } catch(err) {
+//         console.log(err);
+//     }};
  
-loadData().then(data => renderTasks(data));
+// loadData().then(data => renderTasks(data));
+
+// const data = await axios.get(url).then(res => res.data);
+
+axios.get(url).then(res => {
+  renderTasks(res.data)
+})
+// fetch(url)
+// 	.then((response) => {
+//     return response.json();
+//   })
+//   .then(data => renderTasks(data))
 
 let renderTasks = (task) => {
     task.forEach(task => {
@@ -41,18 +52,14 @@ addTaskBtn.addEventListener('click', (e) => {
     formValidation();
 })
 let formValidation = () => {
-    if(taskInput.value === "" || dateInput.value == 0 || timeInput.value == 0){
+    if(taskInput.value === ""){
         alert("Please enter the values")
         console.log("Failure");
     }
     else {
         console.log("Success");
-        console.log(taskInput.value);
-        console.log(dateInput.value);
-        console.log(timeInput.value);
         selectElement = document.querySelector('#inputGroupSelect01');
         output = selectElement.options[selectElement.selectedIndex].value;
-        console.log(output);
       fetch(url, {
         method: 'POST',
         headers: {
@@ -71,45 +78,76 @@ let formValidation = () => {
             taskInput.value = ''
             output = '';
         })
-    }
+}
 };
-
+// const addTask = async (e) => {
+  
+//   try {
+//     const resp = await axios.post(url, { work: work, status: status});
+//     console.log(resp.data);
+//   }catch (err) {
+//     console.log(err.response);
+//   }
+// }
   tasklist.addEventListener('click',(e) => {
     e.preventDefault();
-    let removeTask = e.target.id == 'delete-task';
     let editTask = e.target.id == 'edit-task';
-    let id = e.target.parentElement.parentElement.dataset.id;
+    var deleteTask = e.target.id == 'delete-task';
+    // let id = e.target.parentElement.parentElement.dataset.id;
 //-------------- Method: DELETE ------------------------//
-    if(removeTask) {
-      console.log("Hello");
-      fetch(`${url}/${id}`, {
-        method: 'DELETE',
-      })
-      .then(response => response.json())
-      .then(() => location.reload())
-    }
-
-    if(editTask) {
-      const parent = e.target.parentElement.parentElement;
-      let taskName = parent.querySelector('#task-name').textContent;
-      taskInput.value = taskName;
-    }
-
-    addTaskBtn.addEventListener('click', () => {
-      fetch(`${url}/${id}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          work: taskInput.value,
-          status: output
-        })
-      })
-      .then(res => res.json())
-      .then(() => location.reload())
+    
+    console.log(e.target.parentElement.parentElement.dataset.id);
+    
+    if(deleteTask) {
+    var data = JSON.stringify({
+        "_id": `${e.target.parentElement.parentElement.dataset.id}`
+    });
+  
+    var config = {
+      method: 'delete',
+      url: 'https://inspectbackend.herokuapp.com/todo/',
+      headers: { 
+        'Accept': 'application/json', 
+        'Content-Type': 'application/json'
+      },
+      data : data
+    };
+    
+    axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
     })
-  })
-
+    .then(() => location.reload())
+    .catch(function (error) {
+      console.log(error);
+    });
+    }
+  //   const parent = e.target.parentElement.parentElement;
+  //   let taskName = parent.querySelector('#task-name').textContent;
+  //   taskInput.value = taskName;
+  //   var data = JSON.stringify({
+  //     "_id": `${e.target.parentElement.dataset.id}`,
+  //     "work": `${taskName}`,
+  //     "status": `${output}`
+  //   });
+    
+  //   var config = {
+  //     method: 'patch',
+  //     url: 'https://inspectbackend.herokuapp.com/todo/',
+  //     headers: { 
+  //       'Accept': 'application/json', 
+  //       'Content-Type': 'application/json'
+  //     },
+  //     data : data
+  //   };
+    
+  //   axios(config)
+  //   .then(function (response) {
+  //     console.log(JSON.stringify(response.data));
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
+  //   });
+   })
 
 
