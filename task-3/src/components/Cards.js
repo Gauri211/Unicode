@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import ListGroup from 'react-bootstrap/ListGroup';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import {Link } from 'react-router-dom';
 
     const Cards = ({MyData, loading}) => {
         if(loading) {
@@ -11,12 +12,11 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
         }
         return (
             <div>
-             {MyData.map((card) => {
-             return (
               <Row xs={1} md={3} className="g-4">
-              {Array.from({ length: 3 }).map((_, idx) => (
+               {MyData.map((card) => {
+             return (
                 <Col>
-                 <Card stle={{width: '20rem'}}> 
+                 <Card stle={{width: '20rem'}} key={card.title}> 
                   <Card.Img variant="top" src={card.urlToImage} /> 
                   <Card.Body>
                     <Card.Title>{card.title}</Card.Title>
@@ -29,13 +29,13 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
                    </Card.Text> 
                   </Card.Body>
                   <Card.Body>
-                    <Card.Link href="#">Learn More</Card.Link>
+                    <Link to={`/news/${card.title}`}>Learn More</Link>
                   </Card.Body>
                 </Card>
               </Col> 
-             ))}
+             )})}
              </Row>
-          )})}
+          
      </div>
              );
               }
