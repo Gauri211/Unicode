@@ -3,8 +3,8 @@ import {useEffect, useState} from 'react';
 import axios from 'axios';
 import Cards from './Cards';
 import Pagination from './Pagination';
-import Apple from './Apple';
-import Navbar from './Navigation';
+
+
 let Newsapp = () => {
 
   const [MyData,setMyData] = useState([]);
@@ -13,7 +13,7 @@ let Newsapp = () => {
   const [postsPerPage] = useState(10);
   useEffect(() => {
     setLoading(true);
-    axios.get('https://newsapi.org/v2/everything?q=keyword&apiKey=552ba76d50764eb89b9ec6b80f39107b')
+    axios.get('https://saurav.tech/NewsAPI/top-headlines/category/health/in.json')
     .then(res => setMyData(res.data.articles))
     setLoading(false);
   },[])
@@ -29,8 +29,8 @@ let Newsapp = () => {
 
   return (
       <div className="app"> 
-        <Navbar/>
-        <h1>News App</h1>        
+        
+        <h1 className="text-center">News App</h1>        
         <Cards MyData={currentPosts} loading={loading} />  
         <Pagination 
           postsPerPage={postsPerPage} 

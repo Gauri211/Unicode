@@ -11,12 +11,12 @@ import {Link } from 'react-router-dom';
             return<h2>Loading..</h2>; 
         }
         return (
-            <div>
+            <div className="justify-content-md-center">
               <Row xs={1} md={3} className="g-4">
                {MyData.map((card) => {
              return (
                 <Col>
-                 <Card stle={{width: '20rem'}} key={card.title}> 
+                 <Card stle={{width: '20rem'}} key={card.title} > 
                   <Card.Img variant="top" src={card.urlToImage} /> 
                   <Card.Body>
                     <Card.Title>{card.title}</Card.Title>

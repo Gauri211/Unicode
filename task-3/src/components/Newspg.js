@@ -1,32 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import {Card, ListGroup, Container} from 'react-bootstrap';
+import {Card, ListGroup} from 'react-bootstrap';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-
+import Navbar from './Navigation';
 const News = () => {
 
       const {title} = useParams();
-      // const [news, setNews] = useState([]);
+      
       const [MyData,setMyData] = useState([]);
       
   
   useEffect(() => {
     
-    axios.get('https://newsapi.org/v2/everything?q=keyword&apiKey=552ba76d50764eb89b9ec6b80f39107b')
+    axios.get('https://saurav.tech/NewsAPI/top-headlines/category/health/in.json')
     .then(res => setMyData(res.data.articles))
     
   },[])
     
   console.log(useParams());
 
-      const getNews = MyData.find((card) => card.title == title);
+      const getNews = MyData.find((card) => card.title === title);
       console.log(getNews);
   
     return (
-      MyData.length==0?
+      
+      MyData.length===0?
       <div></div>:
-      <Container className="justify-content-center">
+
+      <body>
+        <Navbar/>
       <Card style={{ width: '50rem' }} >
       
       <Card.Body>
@@ -46,7 +49,7 @@ const News = () => {
       </Card.Body>
           
     </Card>
-    </Container>
+    </body>
     );
 
   }
