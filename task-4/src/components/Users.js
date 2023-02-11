@@ -1,24 +1,47 @@
-import { Outlet, useSearchParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import axios from '../api/axios';
+import useRefreshToken from './useRefreshToken';
 
 const Users = () => {
-    const [searchParams, setSearchParams] = useSearchParams()
-    const showActiveUsers = searchParams.get('filter') === 'active'
-    return (
-        <div>
-            <h2>User 1</h2>
-            <h2>User 2</h2>
-            <h2>User 3</h2>
-            <Outlet/>
-            <div>
-                <button onClick = {() => setSearchParams({ filter: 'active'})}>
-                    Active Users
-                </button>
-                <button onClick = {() => setSearchParams({})}>Reset Filter</button>
-            </div>
-            {
-                showActiveUsers ? <h2>Showing active users</h2> : <h2>Showing all users</h2>
+    const [users, setUsers] = useState();
+    const refresh = useRefreshToken();
+
+    useEffect(() => {
+        let isMounted = true;
+        const controller = new AbortController();
+
+        const getUsers = async () => {
+            try {
+                const response = await axios.get('./users', {
+                    signal: controller.signal
+                });
+                console.log(response.data);
+                isMounted && setUsers(response.data);
+            } catch (err) {
+                console.error(err);
             }
-        </div>
+        }
+
+        getUsers();
+
+        return () => {
+            isMounted = false;
+            controller.abort();
+        }
+    }, [])
+    return (
+        <article>
+            <h2>Users List</h2>
+            {users?.length
+                ? (
+                    <ul>
+                        {users.map((user, i) => {<li key={i}>{user?.username}</li>})}
+                    </ul>
+                ) : <p>No users to display</p>
+            }
+            <button onClick={() => refresh()}>Refresh</button>
+            <br></br>
+        </article>
     )
 }
 

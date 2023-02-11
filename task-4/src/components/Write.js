@@ -7,11 +7,9 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-// import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { postsRed } from '../redux/reducers/reducer';
-import ADD from '../redux/actions/action';
+import { ADD } from '../redux/actions/action';
 import { nanoid } from '@reduxjs/toolkit';
 
 const Write = () => {
@@ -41,7 +39,7 @@ const Write = () => {
           )
           setTitle('')
           setContent('')
-          navigate('/')
+          navigate('/myblogs')
         }
     console.log(posts);
   }
@@ -79,7 +77,7 @@ const Write = () => {
       </label>
       <br></br>
       <Button variant="outlined" onClick={() => onSavePostClicked(posts)} disabled={!canSave}>
-        Submit 
+        Save 
       </Button>
       
     </Paper> 

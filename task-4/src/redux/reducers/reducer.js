@@ -13,6 +13,14 @@ export const postsRed = (state=initialState, action) => {
                 posts:[...state.posts,action.payload]
             }
         
+        case "DELETE_POST" : 
+            const data = state.posts.filter(el => el.id !== action.payload);
+
+            return {
+                ...state,
+                posts:data
+            }
+            
         default: 
             return state
     }

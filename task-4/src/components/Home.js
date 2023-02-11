@@ -1,59 +1,80 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from './auth.js';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Box from '@mui/material/Box';
-// import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { useSelector } from 'react-redux';
-
-
+import Grid from '@mui/material/Grid';
+import { Link } from 'react-router-dom';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
+import Pagination  from './Pagination';
+import Checkbox from '@mui/material/Checkbox';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
 
 const Home = () => {
+    const [blogs, setBlogs] = useState();
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(10);
 
-  const auth = useAuth()
-  const navigate = useNavigate()
+    useEffect(() => {
+        axios.get('https://dummyjson.com/posts')
+        .then(res => setBlogs(res.data.posts))
+      },[])
 
-  const handleLogout = () => {
-    auth.logout()
-    navigate('/')
-}
+      const lastPostIndex = currentPage * postsPerPage;
+      const firstPostIndex = lastPostIndex - postsPerPage;
+      const currentPosts = blogs?.slice(firstPostIndex, lastPostIndex);
 
-const posts = useSelector((state) => state.postsRed.posts);
-    console.log(posts);
+      const paginate = pageNos => setCurrentPage(pageNos);
 
-    const renderedPosts = posts.map(post => (
-      <Card sx={{ maxWidth: 345 }} key={post.id}>
+      const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
+      return (
+        <>
+        {/* </div>
+        <center><h1>Blogs</h1></center>
+        <div> */}
+        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} style={{margin: "10px"}}>
+        {blogs?.map(post => {
+          return (
+        <Grid item xs={4} key={post.id}>
+      <Card sx={{ maxWidth: 400 }} blogs={currentPosts}>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
         {post.title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        {/* <Typography variant="body2" color="text.secondary">
         {post.content.substring(0, 100)}
-        </Typography>
+        </Typography> */}
       </CardContent>
+      <Stack direction="row" spacing={1}>
+        <Chip label={post.tags[0]} variant="outlined" color="primary"/>
+        <Chip label={post.tags[1]} variant="outlined" color="primary"/>
+        <Chip label={post.tags[2]} variant="outlined" color="primary"/>
+      </Stack>
       <CardActions>
-      <Link to={`/posts/${post.id}`} className="button">
+      <Link to={`/blogs/${post.title}`}>
            View Post
       </Link> 
-        <Button size="small">Learn More</Button>
       </CardActions>
+      <Typography gutterBottom variant="body2" component="div">
+        <Checkbox {...label} icon={<FavoriteBorder />} checkedIcon={<Favorite style={{ color: "red" }}/>} />
+        {post.reactions}
+      </Typography>    
     </Card>
-    ))
-
-  return (
-  <>
-    {/* <div>Home Page</div>
-    <button onClick={() => navigate('signup')}>SignUp</button> */}
-    <div>Welcome {auth.user} <br></br>
-          <button onClick={handleLogout}>Logout</button>
-    </div>
-    <center><h1>Blogs</h1></center>
-    <div>{renderedPosts}</div>
-  </>
-  ) 
+    </Grid>
+    )})}
+        </Grid> 
+    <Pagination 
+      postsPerPage={postsPerPage} 
+      totalPosts={blogs?.length} 
+      paginate={paginate}
+    />
+    </>      
+      )
 }
 
 export default Home;
+

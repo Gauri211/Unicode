@@ -1,3 +1,121 @@
+// import * as React from 'react';
+// import '../App.css';
+// import { useState } from 'react';
+// import Box from '@mui/material/Box';
+// import Container from '@mui/material/Container';
+// import CardActions from '@mui/material/CardActions';
+// import CardContent from '@mui/material/CardContent';
+// import Button from '@mui/material/Button';
+// import Typography from '@mui/material/Typography';
+// import Checkbox from '@mui/material/Checkbox';
+// import FormControlLabel from '@mui/material/FormControlLabel';
+// import TextField from '@mui/material/TextField';
+// import { Link, useNavigate, useLocation } from 'react-router-dom';
+// import Paper from '@mui/material/Paper';
+// import { useAuth } from './auth.js';
+// import LoginIcon from '@mui/icons-material/Login';
+// import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+// import LockIcon from '@mui/icons-material/Lock';
+
+// const LogIn = () => {
+//     const [user, setUser] = useState(''); 
+//     const [email, setEmail] = useState('');
+//     const [password, setPassword] = useState('');
+//     const [emailErr, setEmailErr] = useState(false);
+//     const [pwdError, setPwdError] = useState(false);
+//     const auth = useAuth();
+//     const navigate = useNavigate();
+//     const location = useLocation();
+
+//     const redirectPath = location.state?.path || '/'
+
+//     const Regex = () => {
+
+//       const validEmail = /[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]/;
+//       (!validEmail.test(email))? setEmailErr(true) : setEmailErr(false)
+
+//       const validPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/; 
+//       (!validPassword.test(password))? setPwdError(true) : setPwdError(false)
+
+//         if((document.getElementById('email-input').value === '') || (document.getElementById('pwd-input').value === '')) {
+//           alert('Please fill the fields');
+          
+//         } 
+//           auth.login(user, email, password)
+//           navigate(redirectPath, { replace: true })
+        
+//     };
+    
+//   return (
+    
+//     <Container maxWidth="sm">
+//         <Box 
+//           sx={{
+//             '& > :not(style)': {
+//               m: 1, 
+//               // background: "rgb(192, 253, 238)",
+//             },
+//         }}>
+//         <Paper elevation={3} id='paper'>
+        
+        
+//           <CardContent>
+          
+//           <Typography variant="h4" component="div">
+//               <LoginIcon sx={{ fontSize: 40 }} id="icon"/> Login
+//           </Typography>
+//           <div>
+//             <TextField id="user-input" label="Username or Email" variant="outlined" value={user} sx={{background: "white"}}
+//               onChange={e => setUser(e.target.value)} />
+//           </div>
+//           <br></br>
+//           <div>
+//           <AccountCircleIcon sx={{ fontSize: 40 }}/>
+//             <TextField id="email-input" label="Email" variant="standard" value={email} 
+//             onChange={(e) => setEmail(e.target.value)}
+//             error={emailErr}
+//             helperText= {
+//               emailErr? "Incorrect Email" : ''
+//             }/>
+//           </div>
+//           <br></br>
+//           <div>
+//           <LockIcon sx={{ fontSize: 40 }}/>
+//             <TextField id="standard-password-input" type = 'password' label="Password" variant="standard" value={password}
+//             onChange={(e) => setPassword(e.target.value)}
+//             error={pwdError}
+//             helperText= {
+//               pwdError? "Incorrect Password" : ''
+//             } />
+//           </div>        
+//           <a href='#'>Forgot password?</a>
+
+//           </CardContent>
+//           <form>
+//             <FormControlLabel control={<Checkbox/>} label="Remember Me" />
+//           </form>
+//           <CardActions>
+//             <Button variant="contained" onClick={Regex}>LogIn</Button>
+//           </CardActions>
+//           <div>
+//             <Typography sx={{ fontSize: 14 }}  gutterBottom>
+//               Don't have an account?
+//               <Link to={`/signup`}>Create Account</Link>
+//             </Typography>           
+//           </div>
+          
+          
+
+//           </Paper>
+//         </Box>
+
+//         </Container>
+//       );
+  
+// }
+
+// export default LogIn;
+
 import * as React from 'react';
 import '../App.css';
 import { useState } from 'react';
@@ -36,10 +154,19 @@ const LogIn = () => {
 
         if((document.getElementById('email-input').value === '') || (document.getElementById('pwd-input').value === '')) {
           alert('Please fill the fields');
-          
         } 
+
+        // const getUserArray = localStorage.getItem("details");
+        // console.log(getUserArray);
+        // if(getUserArray && getUserArray.length) {
+        //   const userData = JSON.parse(getUserArray);
+        //   console.log(userData);
+        // }        
+      
           auth.login(user, email, password)
           navigate(redirectPath, { replace: true })
+
+          
         
     };
     
@@ -60,11 +187,11 @@ const LogIn = () => {
           <Typography variant="h4" component="div">
               Login
           </Typography>
-          <br></br>
+          {/* <br></br>
           <div>
             <TextField id="user-input" label="Username" variant="outlined" value={user} 
               onChange={e => setUser(e.target.value)} />
-          </div>
+          </div> */}
           <br></br>
           <div>
             <TextField id="email-input" label="Email" variant="outlined" value={email} 
@@ -98,9 +225,6 @@ const LogIn = () => {
               <Link to={`/signup`}>Create Account</Link>
             </Typography>           
           </div>
-          
-          
-
           </Paper>
         </Box>
 
