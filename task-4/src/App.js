@@ -14,25 +14,16 @@ import { AuthProvider } from './components/auth.js';
 import Write from './components/Write.js';
 import UserDetails from './components/UserDetails.js';
 import { RequireAuth } from './components/RequireAuth.js';
+import LandingPage from './components/LandingPage.js';
 // const LazyAbout = React.lazy(() => import ('./components/About'))
 
 const App = () => {
   return (
     <AuthProvider>
-    <Navbar />
+        <Navbar />
         <Routes>
-              <Route path = '/' element = {<Home />} />
-              <Route path = '/myblogs' element = {<Myblogs/>} />
-              <Route path = '/posts/:id' element = {<SingleBlog/>} /> 
-              <Route path = '/blogs/:title' element = {<ViewBlog/>} /> 
-              <Route path = '/users' element = {<Users />} >
-                  <Route path = ':userId' element = {<UserDetails />} />
-              </Route>
-              <Route path = '/login' element = {<LogIn />} />
-              <Route path = '/signup' element = {<SignUp />} />                  
-              <Route path = '/write' element = {<Write />} />                  
-              <Route path = '/profile' element = {<Profile />} />                  
-              <Route path = '*' element = {<NoMatch />} />                  
+          <Route path='/' element={<Home/>} />
+          <Route path='write' element={<Write/>} />
         </Routes>
     </AuthProvider>
   )

@@ -3,54 +3,70 @@ import axios from 'axios';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
+import Pagination  from './Pagination';
+import Checkbox from '@mui/material/Checkbox';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
+import { useDispatch, useSelector } from 'react-redux';
+import { GET_POSTS } from '../redux/actions/action';
+import './styles/styles.css';
 
-const Blogs = () => {
-    const [blogs, setBlogs] = useState();
+const Blogs = ({blogs}) => {
+    // const [blogs, setBlogs] = useState();
+    // const [currentPage, setCurrentPage] = useState(1);
+    // const [postsPerPage] = useState(6);
+    // const dispatch = useDispatch();
+    // const blogs = useSelector(state => state.postsRed.posts);
+    console.log(blogs)
 
-    useEffect(() => {
-        axios.get('https://dummyjson.com/posts')
-        .then(res => setBlogs(res.data.posts))
-      },[])
+    // useEffect(() => {
+    //     axios.get('https://dummyjson.com/posts')
+    //     .then(res => setBlogs(res.data.posts))
+    //   },[])
 
-      console.log(blogs)
+      // const title = useParams();
 
-    // const renderBlogs = blogs.map(post => {
-    //     <Grid item xs={2} key={post.id}>
-    //   <Card sx={{ maxWidth: 345 }}>
-    //   <CardContent>
-    //     <Typography gutterBottom variant="h5" component="div">
-    //     {post.title}
-    //     </Typography>
-    //     {/* <Typography variant="body2" color="text.secondary">
-    //     {post.content.substring(0, 100)}
-    //     </Typography> */}
-    //   </CardContent>
-    //   <CardActions>
-    //   <Link to={`/posts/${post.id}`} className="button">
-    //        View Post
-    //   </Link> 
-    //     {/* <Button size="small" onClick={() => dlt(post.id)}>DELETE</Button> */}
-    //   </CardActions>
-    // </Card>
-    // </Grid>
-    // })
+      // const [search, setSearch] = useState('');
 
+      // const lastPostIndex = currentPage * postsPerPage;
+      // const firstPostIndex = lastPostIndex - postsPerPage;
+      // const currentPosts = blogs?.slice(firstPostIndex, lastPostIndex);
+
+      // const paginate = pageNos => setCurrentPage(pageNos);
+
+
+      const handleSubmit = () => {
+
+      }
       return (
         <>
-            <div>Welcome 
-        <br></br>
+        {/* <input type='search' placeholder='search' onChange={(e) => setSearch(e.target.value)} value={search}/>
+        <button type='submit' onClick={handleSubmit}>Search</button>
+        <h2>{search}</h2> */}
+        <div className='container'>
+        {blogs?.map(post => {
+          return (
+        <div className='card'>
+          <div className='box'>
+            <div className='content'>
+              <h3>{post.title}</h3>
+              <div className='tags'>
+                <p className='tag1'>{post.tags[0]}</p>
+                <p className='tag2'>{post.tags[1]}</p>
+                <p className='tag3'>{post.tags[2]}</p>
+              </div>
+              <a href='blogs' className='btn'>View post</a>
+            </div>
+          </div>
         </div>
-        <center><h1>Blogs</h1></center>
-        {/* <div>
-        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-        {renderBlogs}
-        </Grid>
-        </div>   */}
-    </>      
+        )})}
+        </div>
+      </>      
       )
 }
 

@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import {TextField, Container, Box, Paper, Alert, AlertTitle} from '@mui/material';
-import {Link } from 'react-router-dom';
+import {Link, useNavigate } from 'react-router-dom';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -16,9 +16,13 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import { useDispatch } from 'react-redux';
+import { register } from '../redux/actions/auth';
 
 const SignUp = () => {
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
     const [user, setUser] = useState('');
     const [userErr, setUserErr] = useState(false);
@@ -35,6 +39,7 @@ const SignUp = () => {
     const [phone, setPhone] = useState('');
     const [phoneErr, setPhoneErr] = useState(false);
     
+    const formData = {user, email, password, phone};
 
     // const [validMsg, setValidMsg] = useState(false);
 
@@ -63,6 +68,8 @@ const SignUp = () => {
       else {
         setConpwdErr(false);
       }
+
+      dispatch(register(formData, navigate))
         
         // if(!emailErr && !pwdError && !phoneErr) {
         //   setOpen(true);

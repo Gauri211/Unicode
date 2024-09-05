@@ -6,14 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './app/store.js';
-// import { fetchUsers } from './features/users/usersSlice'
-// import { worker } from './api/server'
 
-// async function main() {
-//   // Start our mock API server
-//   await worker.start({ onUnhandledRequest: 'bypass' })
-
-//   store.dispatch(fetchUsers())
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

@@ -1,27 +1,148 @@
-#paper {
-  margin-top: 150px;
-  padding-left: 150px;
-  padding-top: 50px;
-  padding-bottom: 50px;
+@import url('https://fonts.googleapis.com/css2?family=Italianno&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Khojki&display=swap');
+
+:root {
+  --yellow: linear-gradient(180deg, #F8D49A -146.42%, #FAD79D -46.42%);
+  --orange: #fca61f;
+  --black: #242d49;
+  --gray: #788097;
+  --purple: linear-gradient(180deg, #BB67FF 0%, #C484F3 100%);
+  --pink: #FF919D;
+  --glass: rgba(255, 255, 255, 0.54);
+  --boxShadow: 0px 19px 60px rgb(0 0 0 / 8%);
+  --smboxShadow: -79px 51px 60px rgba(0, 0, 0, 0.08);
+  --activeItem: #f799a354;
 }
 
-.invalid {
-  color: red;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-nav {
-  background-color: aliceblue;
-  padding: 16px 32px;
-}
-nav a {
-  margin-right: 16px;
+body {
+  min-height: 100vh;
+  background: linear-gradient(
+      106.37deg,
+      #ffe1bc 29.63%,
+      #ffcfd1 51.55%,
+      #f3c6f1 90.85%
+    );
 }
 
-/* nav a.active {
+header {
+  position: fixed;
+  padding: 30px 100px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+.logo {
+  color: #fff;
+  font-size: 2em;
   text-decoration: none;
-  font-weight: bold;
-} */
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  font-family: 'Italianno', cursive;
+}
 
-#icon {
-  padding-top: 5px;
+header ul {
+  display: flex;
+  gap: 40px;
+}
+
+header ul li {
+  list-style: none;
+}
+header ul li a {
+  text-decoration: none;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  transition: 0.5s;
+}
+
+header ul li a:hover,
+header ul li a:active {
+  color: #fff;
+}
+
+section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  padding: 100px;
+  gap: 100px;
+}
+
+section .content {
+  max-width: 700px;
+}
+
+section .content h2 {
+  font-size: 3.5rem;
+  color: #fff;
+  font-weight: 500;
+  font-family: 'Noto Serif Khojki', serif;
+}
+
+section .content h2 a {
+  color: #0f0;
+  text-decoration: none;
+}
+
+section .content p {
+  color: #999;
+  font-size: 1.1em;
+}
+
+section .content .btn {
+  padding: 10px 15px;
+  background: #fff;
+  text-decoration: none;
+  color: #222;
+  text-transform: uppercase;
+  font-weight: 500;
+  display: inline-block;
+  margin-top: 25px;
+  letter-spacing: 0.2em;
+  transition: 0.5s ease-in-out;
+  border-radius: 0;
+}
+
+section .content .btn:hover {
+  letter-spacing: 0.4rem;
+}
+
+section .container {
+  position: relative;
+  width: 400px;
+  height: 400px;
+}
+
+section .container .element {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  /* background: #fff; */
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20%;
+}
+.page-item {
+  list-style-type: none;
+}
+.page-link {
+  border-radius: 50%;
+  border: solid;
+  padding: 5px;
+  margin: 2px;
+  text-decoration: none;
 }

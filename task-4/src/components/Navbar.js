@@ -35,6 +35,7 @@ const Navbar = ({blogs}) => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
+          {/* <img src={Bloghome} style={{width: 30, height: 30}}/> */}
             BLOGGERS SIDE
           </Typography>
           <NavLink to='/' variant="h6" component="div" sx={{ flexGrow: 1 }} style={navLinkStyles}>

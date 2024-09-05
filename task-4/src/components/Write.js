@@ -55,7 +55,6 @@ const Write = () => {
           m: 1, 
         },
     }}>
-    <Paper elevation={3} id='paper'>
         
       <CardContent>
         <Typography variant="h4" component="div">
@@ -66,6 +65,13 @@ const Write = () => {
       <label>
         Title: <br></br>
         <input id="input" type="text" placeholder="Enter Title"  value={title} onChange={onTitleChanged}></input>
+      </label>
+      <br></br>
+      <label>
+        Tags: <br></br>
+        <input id="input" type="text" placeholder="Enter Tag1"></input>
+        <input id="input" type="text" placeholder="Enter Tag2"></input>
+        <input id="input" type="text" placeholder="Enter Tag3"></input>
       </label>
       <br></br>
       <label>
@@ -80,7 +86,6 @@ const Write = () => {
         Save 
       </Button>
       
-    </Paper> 
     </Box>
 
   </Container>
